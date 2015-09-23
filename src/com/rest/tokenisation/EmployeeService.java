@@ -22,12 +22,12 @@ import com.persistance.api.HibernateUtil;
 @Path("/empservice")
 public class EmployeeService {
 	
-	  @GET
-	  @Path("/get")
-	  @Produces(MediaType.TEXT_PLAIN)
-	  public String sayPlainTextHello() {
-	    return "Hello Satyajit. This is your first RESTful GET request. Have fun!";
-	  }	
+	@GET
+	@Path("/get")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String sayPlainTextHello() {
+		return "Hello Satyajit. This is your first RESTful GET request. Have fun!";
+	}
 
 	@GET
 	@Path("/emp/{employeeid}")
@@ -119,9 +119,19 @@ public class EmployeeService {
 	@Path("/create")
 	@Produces(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_XML)
-	public Employee createUser(Employee emp) {
+	public Employee createUser(Employee eo) {
 		//TODO: Create Logic goes here
-		return emp;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+
+		session.beginTransaction();
+		EmployeeObject employee = new EmployeeObject();
+		employee.setEmployeeId(eo.getEmployeeId());
+		employee.setEmailId(eo.getEmailId());
+		employee.setEmployeeName(eo.getEmployeeName());
+		employee.setManagerId(eo.getManagerId());
+		session.save(employee);
+		session.getTransaction().commit();
+		return eo;
 		
 	}	
 	
