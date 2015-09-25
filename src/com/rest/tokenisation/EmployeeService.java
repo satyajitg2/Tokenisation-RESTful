@@ -144,4 +144,29 @@ public class EmployeeService {
 		return Response.status(201).entity(result).build();
 
 	}
+
+	@POST
+	@Path("/jsonSendObjectReceiver")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String jsonSendObjectReceiver(String str) {
+		//POST http://localhost:8080/Tokenisation/webapi/tokenservice/jsonSendObjectReceiver
+		//Content JSON
+		//Body JSON
+		System.out.println("Employee jsonSendObjectReceiver : " + str);
+		return " EmployeeService Done";
+
+	}	
+	
+	@POST
+	@Path("/jsonSendEmployeeReceiver")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String jsonSendEmployeeReceiver(Employee str) {
+		//POST http://localhost:8080/Tokenisation/webapi/tokenservice/jsonSendEmployeeReceiver
+		//Content JSON
+		//Body JSON
+		//Receiver Employee
+		System.out.println("jsonSendEmployeeReceiver jsonSendObjectReceiver : " + str);
+		return "jsonSendEmployeeReceiver Done";
+
+	}		
 }
