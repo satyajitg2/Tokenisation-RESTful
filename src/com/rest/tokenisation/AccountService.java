@@ -13,11 +13,11 @@ public class AccountService {
 	@POST
 	@Path("/save")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String save(String acct) {
+	public String save(Account acct) {
 		System.out.println("acct/save" + acct);
-		Gson gson = new Gson(); 
+/*		Gson gson = new Gson(); 
 		final Employee user = gson.fromJson(acct, Employee.class);
 		System.out.println(user);
-		return "AccountService Done";
+*/		return "AccountService Done";
 	}
 }

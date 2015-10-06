@@ -44,9 +44,16 @@ public class TokenService {
 		SecureRandom rand = new SecureRandom();
 		byte bytes[] = new byte[20];
 		rand.nextBytes(bytes);
-	    for(int i=0;i<100;i++){ 
-			data += new BigInteger(130, rand) + "\r\n";
+		long startTime = System.currentTimeMillis();
+		for(int i=0;i<100000;i++){ 
+			data = new BigInteger(130, rand) + "\r\n";
+			System.out.println("Token " + i + " ---> " + data);
 		}
+			    
+	    long endTime = System.currentTimeMillis();
+		long duration = (endTime - startTime);
+
+		System.out.println("Duration for  " + "Tokens" + " => " + duration + " in milliseconds");
 		return data;
 	}
 	
@@ -58,14 +65,22 @@ public class TokenService {
 		StringBuilder sb = new StringBuilder();
 		String output = new String();
 		SecureRandom rand = new SecureRandom();
-		for(int i=0;i<1000;i++){
+		long startTime = System.currentTimeMillis();
+		String data = new String();
+		
+		for(int i=0;i<100000;i++){
 			sb = new StringBuilder();
 			for (int x = 0; x<20; x++) {
 				char c = chars[rand.nextInt(chars.length)];
 				sb.append(c);
 			}
 			output = sb.toString();
+			System.out.println("String token " + i + " ---> " + output);
 		}
+		
+	    long endTime = System.currentTimeMillis();
+		long duration = (endTime - startTime);
+		System.out.println("Time elapsed for String Buld Tokenise: " + duration);
 		return output;
 	}
 	
